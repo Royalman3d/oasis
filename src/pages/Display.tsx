@@ -9,7 +9,6 @@ import shrineView from '../assets/videos/shrine-view.mp4'
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import squid from '../assets/videos/squid.mp4'
 import Vignette from '../../component/Vignette'
-import BgVideo from '../../component/BgVideo'
 
 const ContactForm = () => {
     const [message, setMessage] = useState("");
@@ -404,7 +403,17 @@ const PanelC = () => {
                 transition={{ duration: 12, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
                 className="absolute inset-0"
             >
-                <BgVideo src={forestView} animate={{ scale: 1 }} transition={{ duration: 30, repeat: Infinity, repeatType: "reverse" }} initial={{ scale: 1.1 }} />
+                <motion.video
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 30, repeat: Infinity, repeatType: "reverse" }}
+                    className="absolute top-0 left-0 h-full w-full object-cover"
+                    src={forestView}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                />
             </motion.div>
 
             <Vignette />
@@ -554,7 +563,16 @@ const PanelD = () => {
         <div className='bg-neutral-950 relative overflow-hidden h-full w-full text-white'>
 
             {/* Background Video - Your Original */}
-            <BgVideo src={shrineView} animate={{ scale: glitchActive ? 1.02 : 1 }} transition={{ duration: 0.1 }} />
+            <motion.video
+                animate={{ scale: glitchActive ? 1.02 : 1 }}
+                transition={{ duration: 0.1 }}
+                className="absolute top-0 left-0 h-full w-full object-cover"
+                src={shrineView}
+                autoPlay
+                loop
+                muted
+                playsInline
+            />
 
             {/* Scanline Effect */}
             <motion.div
@@ -578,7 +596,7 @@ const PanelD = () => {
                     backgroundSize: '50px 50px'
                 }}
             />
-            
+
             {/* Top Right - Live Status */}
             <div className="absolute top-[1%] right-[4%] z-index">
                 <motion.div
